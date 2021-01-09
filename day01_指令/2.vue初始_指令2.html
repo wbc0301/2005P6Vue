@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 指令5：v-for 循环数组 对象 字符串 数字-->
+        <ul>
+            <li v-for="(item, index) in arr">{{item}}----{{index}}</li>
+        </ul>
+
+        <hr>
+
+        <ul>
+            <li v-for="(value, key, index) in obj">{{value}}----{{key}}----{{index}}</li>
+        </ul>
+
+        <hr>
+
+        <ul>
+            <li v-for="(value, index) in 'abcdef' ">{{value}}----{{index}}</li>
+        </ul>
+
+        <hr>
+
+        <ul>
+            <li v-for="(value, index) in num ">{{value}}----{{index}}</li>
+        </ul>
+
+        <!-- 指令6：v-on 绑定事件  .后边的叫做事件修饰符 prevent阻止浏览器的默认行为   stop 阻止事件冒泡   缩写 @-->
+        <!-- <button v-on:click="add">添加</button> -->
+        <a href="http://www.baidu.com">
+            <!-- <button v-on:click.once.prevent.stop="add">添加</button> -->
+            <button @click.once.prevent.stop="add">添加</button>
+        </a>
+        <input type="text" @keyup.enter="submit">
+        <input type="text" @keyup.13="submit">
+
+
+    </div>
+
+
+
+    <script>
+        new Vue({
+            el: '#app', // vue 接管的页面范围
+            data: { // 存放数据 在this上可以读取到
+                arr: [111, 222, 333],
+                obj: { name: '张小三儿', age: '18' },
+                num: 2
+            },
+            methods: { // 放函数的地方 在this上可以读取到
+                add() { // data 里边的所有数据都在this
+                    this.arr.push(444)
+                },
+                submit() {
+                    alert('提交成功')
+                }
+
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
