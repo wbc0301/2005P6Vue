@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .red {
+            color:red;
+        }
+        .border {
+            border: 1px solid #000;
+        }
+        .bg {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 指令: v-bind class 可以绑定字符串，数组，对象-->
+        <div :class="red">内容</div>
+        <div :class="list">内容</div>
+        <div :class="obj">内容</div>
+
+        <!-- 指令: v-bind class 可以绑定字符串，数组，对象-->
+        <div :style="'color: red'">内容2</div>
+        <div :style="obj2">内容2</div>
+        <div :style="[obj2, obj3]">内容2</div>
+
+    </div>
+
+
+
+    <script>
+        new Vue({
+            el: '#app', // vue 接管的页面范围
+            data: { // 存放数据 在this上可以读取到
+                red: 'red',
+                list: ['red', 'border', 'bg'],
+                obj: {red: true, border: false, bg: true},
+                obj2: {
+                    color: 'green',
+                    fontSize: '20px'
+                },
+                obj3: {
+                    border: '5px solid red'
+                },
+
+            },
+            methods: { // 放函数的地方 在this上可以读取到
+
+
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>

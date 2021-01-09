@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="请输入" v-model="val1">
+        <select v-model="calc">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" placeholder="请输入" v-model="val2">
+        <button @click="handler">=</button>
+        <span>{{result}}</span>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app', // vue 接管的页面范围
+            data: { // 存放数据 在this上可以读取到
+                val1: '',
+                val2: '',
+                calc: '+',
+                result: '',
+            },
+            methods: { // 放函数的地方 在this上可以读取到
+                handler() {
+                    console.log(this.val1 , this.val2, this.calc);
+
+                    let val1 = Number(this.val1);
+                    let val2 = Number(this.val2);
+
+                    if(this.calc === '+') {
+                        this.result = val1 + val2;
+                    }else if(this.calc === '-') {
+                        this.result = val1 - val2;
+                    }else if(this.calc === '*') {
+                        this.result = val1 * val2;
+                    }else if(this.calc === '/') {
+                        this.result = val1 / val2;
+                    }
+                }
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>

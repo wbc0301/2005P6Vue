@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 指令7: v-model 双向绑定 绑定表单元素 input textarea select -->
+        <!-- text绑定的是value -->
+        <input type="text" v-model="val1">
+        <textarea v-model="val1"></textarea>
+        <div>{{val1}}</div>
+
+        <!-- radio绑定的是value -->
+        <hr>
+        爱好：<input type="radio" v-model="val2" value="王者"> 王者
+             <input type="radio" v-model="val2" value="cf"> cf
+        <div>{{val2}}</div>
+        <hr>
+        <!-- checkbox 绑定的是value 多选 绑定的值是一个数组 -->
+        校区：
+        <input type="checkbox" v-model="val3" value="郑州校区1">郑州校区
+        <input type="checkbox" v-model="val3" value="北京校区1">北京校区
+        <input type="checkbox" v-model="val3" value="延庆校区1">延庆校区
+        <input type="checkbox" v-model="val3" value="昌平校区">昌平校区
+        <div>{{val3}}</div>
+
+        <!-- checkbox 绑定的是checked 选项只有一个（单选） 绑定的值是一个布尔值 就和value没有关系了 -->
+        是否成年：<input type="checkbox" v-model="val4" value="123">
+        <div>{{val4}}</div>
+        <hr>
+
+        <!-- select  绑定的是value-->
+        请选择城市：
+        <select v-model="val5">
+            <option value="北京1">北京</option>
+            <option value="上海1">上海</option>
+            <option value="深圳1">深圳</option>
+            <option value="郑州1">郑州</option>
+        </select>
+        <div>{{val5}}</div>
+        <!-- select 多选  绑定的是value  变量的值要是一个数组 -->
+        <select v-model="val6" multiple>
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="深圳">深圳</option>
+            <option value="郑州">郑州</option>
+        </select>
+        <div>{{val6}}</div>
+
+        <hr>
+    </div>
+
+
+
+    <script>
+        new Vue({
+            el: '#app', // vue 接管的页面范围
+            data: { // 存放数据 在this上可以读取到
+                val1: '',
+                val2: 'cf',
+                val3: [],
+                val4: true,
+                val5: '郑州1',
+                val6: ["北京", "上海"],
+
+            },
+            methods: { // 放函数的地方 在this上可以读取到
+
+
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>

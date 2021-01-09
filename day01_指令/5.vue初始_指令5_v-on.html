@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- 事件传参 -->
+            <li v-for="item in list" @click="handler(item)">{{item}}</li>
+        </ul>
+        <!-- $event 是vue提供给我们的变量 就是事件对象 -->
+        <button @click="handler2($event,'ok','我也是OK')">点我呀</button>
+        <button @click="handler3">点我呀</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app', // vue 接管的页面范围
+            data: { // 存放数据 在this上可以读取到
+                list: [111,222,333]
+            },
+            methods: { // 放函数的地方 在this上可以读取到
+                handler(item) {
+                    alert(item)
+                },
+                handler2(event, val1, val2) { // 接收事件对象 和 其他参数
+                    console.log(event)
+                    console.log(val1)
+                    console.log(val2)
+                },
+                handler3(event) { // 接收事件对象
+                    console.log(event)
+                }
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
