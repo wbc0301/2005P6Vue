@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .nav {
+            display: flex;
+        }
+        .nav span {
+            flex:1;
+            text-align: center;
+            line-height: 40px;
+        }
+        .active {
+            background-color: blue;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="nav">
+            <span :class="currIndex === index ? 'active' : '' " v-for="(item, index) in list" @click="handler(index)">{{item}}</span>
+        </div>
+        <div v-if="currIndex === 0" class="list">
+            <p v-for="item in list1">{{item}}</p>
+        </div>
+
+        <div v-else-if="currIndex === 1" class="form">
+            <div>
+                姓名：<input type="text" v-model="obj.name">
+            </div>
+            <div>
+                性别：
+                <input type="radio" v-model="obj.sex" value="男">男
+                <input type="radio" v-model="obj.sex" value="女">女
+            </div>
+            <div>
+                爱好：
+                <input type="checkbox" v-model="obj.hobby" value="吃">吃
+                <input type="checkbox" v-model="obj.hobby" value="睡">睡
+                <input type="checkbox" v-model="obj.hobby" value="玩">玩
+            </div>
+
+            
+            <div>
+                是否收到offer：
+                <input type="checkbox" v-model="obj.offer">
+            </div>
+            
+            <div>
+                校区：
+                <select v-model="obj.address">
+                    <option value="">请选择</option>
+                    <option value="北京">北京</option>
+                    <option value="上海">上海</option>
+                    <option value="深圳">深圳</option>
+                    <option value="杭州">杭州</option>
+                </select>
+            </div>
+
+            <div>
+                梦想：
+                <select v-model="obj.dream" multiple>
+                    <option value="北京">北京</option>
+                    <option value="上海">上海</option>
+                    <option value="深圳">深圳</option>
+                    <option value="杭州">杭州</option>
+                </select>
+            </div>
+
+            <div>
+                {{obj}}
+            </div>
+
+        </div>
+
+        <div v-else class="empty">空</div>
+
+        
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app', // 页面的接管范围
+            data: {
+                list: ['列表', '表单', '空'],
+                currIndex: 1,
+                list1: [111,222,333,444],
+                obj: {
+                    name: '',
+                    sex: "女",
+                    hobby: ['睡'],
+                    offer: false,
+                    address: '',
+                    dream: [],
+
+                }
+            },
+            methods: {
+                handler(index) {
+                    this.currIndex = index;
+                }
+            }
+        })
+
+
+    </script>
+
+</body>
+</html>
