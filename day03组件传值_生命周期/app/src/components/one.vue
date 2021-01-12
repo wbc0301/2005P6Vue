@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: 'one',
+    name: 'one', // 组件的名字
 	data() {
 		return {};
 	},

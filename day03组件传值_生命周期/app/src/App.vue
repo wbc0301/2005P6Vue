@@ -19,7 +19,7 @@ import one from './components/one'
 // 3: 使用组件
 
 export default {
-    name: 'App',
+    name: 'App',// 组件的名字
 	data() {
 		return {
 
