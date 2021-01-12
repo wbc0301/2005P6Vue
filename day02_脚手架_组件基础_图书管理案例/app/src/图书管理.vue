@@ -22,7 +22,7 @@
 				<td>{{item.name}}</td>
 				<td>{{item.time}}</td>
 				<td>
-					<button @click="edit(index)">修改</button>
+					<button @click="edit(index)">编辑</button>
 					<button @click="del(index)" :disabled="editing && currIndex == index">删除</button>
 				</td>
 			</tr>
@@ -69,19 +69,21 @@ export default {
 				alert('猪都会输全！')
 				return
 			}
-			let flag = false;
-			this.bookList.forEach(item => { // 循环bookList
-				if (item.id == this.num) {
-					flag = true;
-				}
-			});
 
 			if (this.editing) { // 编辑
 				// this.currIndex 当前正在编辑的数据的下标
-                this.bookList[this.currIndex].name = this.name
-                this.editing = false; // 编辑完成
+				this.bookList[this.currIndex].name = this.name
+				this.editing = false; // 编辑完成
 			} else { // 添加
-				if (!flag) { // 该编没有添加过
+				let flag = false;  // 去重操作
+                this.bookList.forEach(item => { // 循环bookList
+                    console.log(item)
+					if (item.id == this.num) { // id重复了
+						flag = true; // id重复了
+					}
+				});
+                
+                if (!flag) { // 该编没有添加过
 					// this.num, this.name 
 					let obj = {
 						id: this.num,
@@ -93,6 +95,7 @@ export default {
 					alert('该编号已经有了,不能重复添加！')
 				}
 			}
+
 			this.num = ''; // 清空输入框的数据
 			this.name = ''; // 清空输入框的数据
 		},
@@ -104,8 +107,8 @@ export default {
 			this.name = this.bookList[index].name;
 		},
 		del(index) {  // 删除
-            this.bookList.splice(index, 1) // 参数1：起始位置  参数2：删几个
-        }, 
+			this.bookList.splice(index, 1) // 参数1：起始位置  参数2：删几个
+		},
 	},
 };
 </script>
