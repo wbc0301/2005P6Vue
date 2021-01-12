@@ -10,11 +10,11 @@
         <!-- 3: 使用组件 -->
         <!-- 通过自定属性的形式往子组件传递数据 -->
         <!-- <one a="1" b="2" c="3" ></one> -->
-        
+
         <!-- 通过注册自定义事件绑定父组件的一个函数，在子组件触发这个自定义事件时，调用这个函数 -->
         <!-- 函数是父组件的，也就是说，改变数据的逻辑是在父组件中处理的 -->
-        <one :present="present" @aa="handler"></one>
-        
+        <!-- <one :present="present" @aa="handler"></one> -->
+        <two :a="present" b="2" @aaa="handler"></two>
 	</div>
 </template>
 
@@ -22,6 +22,8 @@
 
 // 1: 引入组件
 import one from './components/one'
+import two from './components/two'
+import Two from './components/two.vue'
 
 // 3: 使用组件
 
@@ -37,7 +39,8 @@ export default {
 	components: { // 这里是注册子组件的地方
         // 2：注册组件
         // one: one  
-        one // es6对象的简写写法
+        one, // es6对象的简写写法
+        two,
     },
     methods: {
         handler(val) {
