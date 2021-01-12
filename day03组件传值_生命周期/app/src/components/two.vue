@@ -9,7 +9,7 @@
 
 <script>
 export default {
-	props: ['a', 'b'], // 接收父组件传递的数据
+    props: ['a', 'b'], // 接收父组件传递的数据
 	data() {
 		return {
             str: '老师教你去学校'
