@@ -4,6 +4,7 @@ import VueRouter from 'vue-router' // 引入vue-router包
 import home from '../views/home.vue' // 引入要展示的组件
 import list from '../views/list.vue'
 import detail from '../views/detail.vue'
+import login from '../views/login.vue' // 登录页
 
 Vue.use(VueRouter) // use 后 我们就可以在项目中使用路由
 
@@ -26,6 +27,11 @@ const routes = [ // 路由跳转的一个一个的规则  一个对象就是一�
         path: '/detail',
         name: 'detail',
         component: detail
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: login
     },
 ]
 
