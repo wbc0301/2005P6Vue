@@ -1,7 +1,7 @@
 import Vue from 'vue'
-// import App from './App.vue'
+import App from './App.vue'
 // import App from './生命周期.vue'
-import App from './tab_动态组件_keep-alive.vue'
+// import App from './tab_动态组件_keep-alive.vue'
 
 Vue.config.productionTip = false
 

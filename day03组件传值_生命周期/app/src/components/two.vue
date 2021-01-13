@@ -19,7 +19,15 @@ export default {
 		song() {
             this.$emit('aaa', this.str) // 触发自定义事件
 		}
-	},
+    },
+    created () {
+        //  this.$emit('aaa', this.str) // 触发自定义事件
+    },
+    mounted () {
+         this.$emit('aaa', this.str) // 触发自定义事件
+    },
+
+    
 };
 </script>
 
