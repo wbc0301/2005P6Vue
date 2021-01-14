@@ -12,19 +12,23 @@ export default new Vuex.Store({
     // vuex不允许我们直接改state里边的数据，如果要改数据， 
     // 要写一个mutation函数，函数里边写修改数据的逻辑， 再调用这个函数，让逻辑执行，然数据就改了
     mutations: {
+        // 改变oneList
         changeOne(state, obj) {
             if(obj.type === 'init') { // 页面刷新时初始化
                 state.oneList = obj.data;
             }else if(obj.type === 'del') { // 删除一个元素
+                // 删除元素时，obj.data是要删除的元素的索引
                 state.oneList.splice(obj.data, 1);
             }else if(obj.type === 'add') { // 添加一个元素
                 state.oneList.push(obj.data)
             }else if(obj.type === 'empty') { // 清空数组
                 state.oneList = [];
             }else if(obj.type === 'addAll') { // 添加多个元素
-                state.oneList = state.oneList.concat(obj.data)
+                state.oneList = state.oneList.concat(obj.data)  // concat方法连接两个数组返回一个新数组
             }
         },
+        
+        // 改变twoList
         changeTwo(state, obj) {
             if(obj.type === 'init') {
                 state.twoList = obj.data;
@@ -38,6 +42,8 @@ export default new Vuex.Store({
                 state.twoList = state.twoList.concat(obj.data)
             }
         },
+        
+        // 改变threeList
         changeThree(state, obj) {
             if(obj.type === 'init') {
                 state.threeList = obj.data;
@@ -51,7 +57,5 @@ export default new Vuex.Store({
                 state.threeList = state.threeList.concat(obj.data)
             }
         },
-
-
     },
 })
