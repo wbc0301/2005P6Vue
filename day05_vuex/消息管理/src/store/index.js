@@ -13,15 +13,15 @@ export default new Vuex.Store({
     // 要写一个mutation函数，函数里边写修改数据的逻辑， 再调用这个函数，让逻辑执行，然数据就改了
     mutations: {
         changeOne(state, obj) {
-            if(obj.type === 'init') {
+            if(obj.type === 'init') { // 页面刷新时初始化
                 state.oneList = obj.data;
-            }else if(obj.type === 'del') {
+            }else if(obj.type === 'del') { // 删除一个元素
                 state.oneList.splice(obj.data, 1);
-            }else if(obj.type === 'add') {
+            }else if(obj.type === 'add') { // 添加一个元素
                 state.oneList.push(obj.data)
-            }else if(obj.type === 'empty') {
+            }else if(obj.type === 'empty') { // 清空数组
                 state.oneList = [];
-            }else if(obj.type === 'addAll') {
+            }else if(obj.type === 'addAll') { // 添加多个元素
                 state.oneList = state.oneList.concat(obj.data)
             }
         },
