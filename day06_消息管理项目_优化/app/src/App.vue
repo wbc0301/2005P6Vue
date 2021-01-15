@@ -1,5 +1,16 @@
 <template>
 	<div id="app">
+
+        <!-- 面包屑 -->
+		<el-breadcrumb separator="/">
+			<el-breadcrumb-item :to="{ path: '/one' }">首页</el-breadcrumb-item>
+			<el-breadcrumb-item>
+				<a href="/two">活动管理</a>
+			</el-breadcrumb-item>
+			<el-breadcrumb-item>活动列表</el-breadcrumb-item>
+			<el-breadcrumb-item>活动详情</el-breadcrumb-item>
+		</el-breadcrumb>
+
 		<!-- <el-button>默认按钮</el-button>
         <el-button type="success" :circle="true">钮</el-button>
 		<el-button type="danger" size="mini" round>默认按钮</el-button>-->
@@ -15,6 +26,10 @@
 			<el-menu-item index="/three">
 				<i class="el-icon-delete a"></i>
 				回收站({{$store.state.threeList.length}})
+			</el-menu-item>
+			<el-menu-item index="/four">
+				<i class="el-icon-delete a"></i>
+				录播图展示
 			</el-menu-item>
 		</el-menu>
 		<router-view />
@@ -44,25 +59,42 @@ export default {
 		});
 
 		// 1：promise 是通过回调函数的参数来接收响应数据的，
-		// this.$axios({ url: '/list.json' }).then(res => {
+		// this.$axios({ url: '/list1.json' }).then(res => {
 		// 	this.$store.commit('changeList', { type: 'init', listName: 'one', data: res.data.one })
 		// 	this.$store.commit('changeList', { type: 'init', listName: 'two', data: res.data.two })
 		// 	this.$store.commit('changeList', { type: 'init', listName: 'three', data: res.data.three })
-		//     // this.fullscreenLoading = false;
-		//     loading.close(); // 关闭loading
+		// 	// this.fullscreenLoading = false;
+		// 	loading.close(); // 关闭loading
+		// 	this.$message({ message: '数据请求成功', type: 'success' }) // 成功提示
+		// }).catch(err => {
+		//     console.log(err)
+		// 	loading.close(); // 关闭loading
+		// 	this.$message({ message: '数据请求失败', type: 'error', duration: 1000 }) // 错误提示
 		// })
 
-        // 2：async await es6
-        // await 会直接返回响应数据  await的作用就是让程序暂停。 await只能在 async 函数里使用
-        // 作用就是让我们用同步方式写异步的逻辑
-        
-		var res = await this.$axios({ url: '/list.json' })
+		// 2：async await es6
+		// await 会直接返回响应数据  await的作用就是让程序暂停。 await只能在 async 函数里使用
+		// 作用就是让我们用同步方式写异步的逻辑
 
-		this.$store.commit('changeList', { type: 'init', listName: 'one', data: res.data.one })
-		this.$store.commit('changeList', { type: 'init', listName: 'two', data: res.data.two })
-		this.$store.commit('changeList', { type: 'init', listName: 'three', data: res.data.three })
-        // this.fullscreenLoading = false;
-		loading.close(); // 关闭loading
+		try { // 正常的逻辑 当有错误的时候 就会走到 catch 里边
+			var res = await this.$axios({ url: '/list.json' })
+			this.$store.commit('changeList', { type: 'init', listName: 'one', data: res.data.one })
+			this.$store.commit('changeList', { type: 'init', listName: 'two', data: res.data.two })
+			this.$store.commit('changeList', { type: 'init', listName: 'three', data: res.data.three })
+			// this.fullscreenLoading = false;
+			loading.close(); // 关闭loading
+			this.$message({ message: '数据请求成功', type: 'success' }) // 成功提示
+			// this.$notify({ // 在右页面侧弹出提示框
+			// 	title: '提示1',
+			// 	message: '这是一条不会自动关闭的消息2',
+			// 	duration: 3000
+			// });
+		} catch {
+			loading.close(); // 关闭loading
+			this.$message({ message: '数据请求失败', type: 'error', duration: 1000 }) // 错误提示
+		}
+
+
 
 	},
 	methods: {
