@@ -2,7 +2,7 @@
 	<div class="three">
 		<el-carousel trigger="click" height="200px">
 			<el-carousel-item v-for="item in 4" :key="item">
-                <img :src="'/'+ item + '.jpg'" alt="">
+				<img :src="'/'+ item + '.jpg'" alt />
 			</el-carousel-item>
 		</el-carousel>
 	</div>
@@ -12,20 +12,20 @@
 export default {
 	data() {
 		return {
-            // list: ['/1.jpg','/2.jpg','/3.jpg','/4.jpg',]
-            list: [],
-        };
+			// list: ['/1.jpg','/2.jpg','/3.jpg','/4.jpg',]
+			list: [],
+		};
 	},
-	mounted() { 
-        this.$axios({url: '/data.json'}).then(res => {
-            console.log(res.data)
-            // this.list = res.data;
-            this.list = res.data.filter(item => { // 过滤数组
-                return item.typeid === 1 // 返回的是true的时候 item 会被添加到返回的数组里边去。
-            })
+	mounted() {
+		this.$axios({ url: '/data.json' }).then(res => {
+			console.log(res.data)
+			// this.list = res.data;
+			this.list = res.data.filter(item => { // 过滤数组
+				return item.typeid === 1 // 返回的是true的时候 item 会被添加到返回的数组里边去。
+			})
 
-        })
-    },
+		})
+	},
 	methods: {
 
 	},
@@ -33,13 +33,15 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.el-carousel {
-    width: 600px;
-    margin: auto;
+.three {
+	.el-carousel {
+		width: 600px;
+		margin: auto;
+	}
 }
 img {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 .el-carousel__item h3 {
 	color: #475669;
