@@ -17,6 +17,14 @@ Vue.use(Vant);
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 
+// 引入图片懒加载的指令
+import { Lazyload } from 'vant';
+Vue.use(Lazyload);
+// 注册时可以配置额外的选项
+// Vue.use(Lazyload, {
+//   lazyComponent: true,
+// });
+
 new Vue({
   router,
   store,
