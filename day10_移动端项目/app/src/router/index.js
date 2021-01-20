@@ -14,7 +14,8 @@ const routes = [
         name: 'home',
         component: home,
         meta: {
-            showNav: true // 展示下边的导航条
+            showNav: true, // 展示下边的导航条
+            title: '首页',
         }
     },
     {
@@ -22,7 +23,8 @@ const routes = [
         name: 'rec',
         component: () => import('../views/rec.vue'),
         meta: {
-            showNav: true // 展示下边的导航条
+            showNav: true, // 展示下边的导航条
+            title: '推荐',
         }
     },
     {
@@ -31,7 +33,8 @@ const routes = [
         component: () => import('../views/cart.vue'),
         meta: { // 元信息  做一个标记
             mastLogin: true,
-            showNav: false // 不展示下边的导航条
+            showNav: false, // 不展示下边的导航条
+            title: '购物车',
         }
     },
     {
@@ -40,7 +43,8 @@ const routes = [
         component: () => import('../views/my.vue'),
         meta: { // 元信息
             mastLogin: true,
-            showNav: true // 展示下边的导航条
+            showNav: true, // 展示下边的导航条
+            title: '我的',
         }
     },
     {
@@ -49,7 +53,8 @@ const routes = [
         component: () => import('../views/detail.vue'),
         meta: { // 元信息
             mastLogin: true,
-            showNav: false
+            showNav: false,
+            title: '详情页',
         }
     },
     {
@@ -57,7 +62,7 @@ const routes = [
         name: 'login',
         component: () => import('../views/login.vue'),
         meta: {
-            showNav: false
+            showNav: false,
         }
     },
 ]

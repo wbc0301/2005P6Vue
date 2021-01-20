@@ -23,10 +23,10 @@ new Vue({
 
 
 // 排序
-// var arr = [{price: 1},{price: 3},{price: 2},{price: 9},{price: 6},]
-// // sort 会改变原数组
-//  arr.sort((a, b) => { // return 的值如果是大于0, a 和 b 就会交换位置
-//     return a.price - b.price // 升序
-//     // return b.price - a.price // 降序
-// })
-// console.log(arr)
+var arr = [{price: 1},{price: 3},{price: 2},{price: 9},{price: 6}]
+// sort 会改变原数组
+ arr.sort((a, b) => { // return 的值如果是大于0, a 和 b 就会交换位置  循环遍历
+    // return a.price - b.price // 升序
+    return b.price - a.price // 降序
+})
+console.log(arr)

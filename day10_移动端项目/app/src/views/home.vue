@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<van-nav-bar title="首页" left-text="返回" left-arrow @click-left="$router.back()" />
+		<!-- <van-nav-bar title="首页" left-text="返回" left-arrow @click-left="$router.back()" /> -->
 
 		<van-tabs v-model="active">
 			<van-tab v-for="item in list" :key="item.id" :title="item.type">
@@ -19,7 +19,7 @@
 
 				<!-- 宫格组件 -->
 				<van-grid :border="true" :column-num="2" class="grid">
-					<van-grid-item v-for="ele in item.arr" :key="ele.id">
+					<van-grid-item v-for="ele in item.arr" :key="ele.id" @click="toDetail(ele)">
 						<div>
 							<img :src="ele.pic" alt />
 							<p>{{ele.title}}</p>
@@ -72,7 +72,12 @@ export default {
 				this.arrState = '默认'
 				this.list = this.listCopy;
 			}
-		}
+        },
+        // 跳转到详情页
+        toDetail(obj) {
+            this.$store.commit('changeCurrentData', obj)
+            this.$router.push('/detail')
+        }
 	},
 };
 </script>
