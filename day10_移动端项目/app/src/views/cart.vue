@@ -14,7 +14,7 @@
 		</van-checkbox-group>
 
 		<van-submit-bar :price="allPrice" button-text="提交订单" @submit="onSubmit">
-			<van-checkbox v-model="allSelect">全选</van-checkbox>
+			<van-checkbox v-model="allSelect" @click="allSelectClick">全选</van-checkbox>
 		</van-submit-bar>
 	</div>
 </template>
@@ -37,19 +37,34 @@ export default {
 			return allPrice * 100;
 		}
 	},
-	mounted() { },
 	methods: { // 不能使用箭头函数
 		onSubmit() {
 			alert(1)
-		}
-	},
-	watch: {
-		// 不能使用箭头函数
-		allSelect(newValue) {
-			if (newValue) { // 全选
+		},
+		allSelectClick() {
+			if (this.allSelect) { // 全选
 				this.result = this.$store.state.cartList;
 			} else { // 全不选
 				this.result = [];
+			}
+		},
+	},
+	watch: {
+		// 不能使用箭头函数
+		// allSelect(newValue) {
+		// 	if (newValue) { // 全选
+		// 		this.result = this.$store.state.cartList;
+		// 	} else { // 全不选
+		// 		this.result = [];
+		// 	}
+		// },
+
+		result(newValue) {
+			// console.log(newValue.length)
+			if (newValue.length === this.$store.state.cartList.length) { // 要全选
+				this.allSelect = true;
+			} else {// 取消全选
+				this.allSelect = false;
 			}
 		}
 	}
