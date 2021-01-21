@@ -11,6 +11,7 @@ export default new Vuex.Store({
     state: { // 放数据的地方
         username: '', // 用户名
         currentData: {}, // 详情页展示的商品数据
+        cartList: [] // 购物车的数据
     },
     mutations: {  // 里边的函数是用来 修改state里边的数据的
         changeName(state, val) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
         },
         changeCurrentData(state, obj) { // 改变详情页展示的商品数据
             state.currentData = obj
+        },
+        changeCartList(state, obj) { // 把数据加入到购物车
+            state.cartList.push(obj)
         }
     },
     plugins: [persist()] // vuex的插件
