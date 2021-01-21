@@ -53,9 +53,10 @@ export default {
             this.$store.commit('del', index)
             
             // 2.用户选中的数组里边删除
-            this.result.forEach((item, i) => {
+            // 参数1: 元素  2：索引  3：数组本身
+            this.result.forEach((item, i, arr) => {
                 if(item._id === id) {
-                    this.result.splice(i, 1)
+                    arr.splice(i, 1)
                 }
             })
 
