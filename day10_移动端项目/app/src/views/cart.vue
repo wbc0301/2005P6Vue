@@ -1,13 +1,13 @@
 <template>
 	<div class="cart">
 		<van-checkbox-group v-model="result">
-			<van-checkbox :name="item" v-for="item in $store.state.cartList" :key="item._id">
+			<van-checkbox :name="item" v-for="(item,index) in $store.state.cartList" :key="item._id">
 				<van-card :price="item.price" desc="描述信息" :title="item.title" :thumb="item.pic">
 					<template #footer>
 						<!-- 阻止事件冒泡  @click.native.stop -->
 						<van-stepper v-model="item.num" @click.native.stop />
 						<!-- 步进器 -->
-						<van-button size="mini" type="danger" @click.native.stop>删除</van-button>
+						<van-button size="mini" type="danger" @click.native.stop="del(index, item._id)">删除</van-button>
 					</template>
 				</van-card>
 			</van-checkbox>
@@ -48,6 +48,18 @@ export default {
 				this.result = [];
 			}
 		},
+		del(index, id) { // 删除
+			// 1.在购物车数组里边删除
+            this.$store.commit('del', index)
+            
+            // 2.用户选中的数组里边删除
+            this.result.forEach((item, i) => {
+                if(item._id === id) {
+                    this.result.splice(i, 1)
+                }
+            })
+
+		}
 	},
 	watch: {
 		// 不能使用箭头函数
