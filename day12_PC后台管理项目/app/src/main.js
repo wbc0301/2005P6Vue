@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import '@/assets/css/reset.css' // 不需要 from  也不需要声明一个变量了   css不需要from
+
 Vue.config.productionTip = false
 
 
@@ -10,6 +12,10 @@ Vue.config.productionTip = false
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
+
+import axios from 'axios'
+Vue.prototype.$axios = axios;
+
 
 new Vue({
     router,
