@@ -20,6 +20,9 @@
 </template>
 
 <script>
+
+import { Dialog } from 'vant'; // 引入弹窗函数
+
 export default {
 	data() {
 		return {
@@ -49,16 +52,24 @@ export default {
 			}
 		},
 		del(index, id) { // 删除
-			// 1.在购物车数组里边删除
-            this.$store.commit('del', index)
-            
-            // 2.用户选中的数组里边删除
-            // 参数1: 元素  2：索引  3：数组本身
-            this.result.forEach((item, i, arr) => {
-                if(item._id === id) {
-                    arr.splice(i, 1)
-                }
-            })
+			Dialog({ // 删除痰喘
+				message: '您确认删除吗？',
+				showConfirmButton: true, // 展示确认按钮
+				showCancelButton: true, // 展示取消按钮
+			}).then(res => { 
+                // 1.在购物车数组里边删除
+                this.$store.commit('del', index)
+
+                // 2.用户选中的数组里边删除
+                // 参数1: 元素  2：索引  3：数组本身
+                this.result.forEach((item, i, arr) => {
+                    if(item._id === id) {
+                        arr.splice(i, 1)
+                    }
+                })
+                
+            }, err => {})
+
 
 		}
 	},

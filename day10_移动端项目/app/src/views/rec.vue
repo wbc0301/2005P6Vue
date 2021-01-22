@@ -3,6 +3,7 @@
         推荐页
         
         <div>我的名字是： {{$store.state.username}}</div>
+        <div class="aaa">我的</div>
 
     </div>
 </template>
@@ -18,7 +19,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.rec {
-    
+.aaa {
+        font-size: 100px;
 }
 </style>

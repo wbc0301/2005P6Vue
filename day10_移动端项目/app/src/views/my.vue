@@ -1,6 +1,7 @@
 <template>
     <div class='my'>
         我的页面
+        <div class="aaa">我的</div>
         <div>我的名字是： {{$store.state.username}}</div>
         <van-button size="large" type="primary" @click="logout">退出</van-button>
     </div>
