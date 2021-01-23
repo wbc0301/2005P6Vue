@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">内容</div>
+
+
+    <script>
+
+        // Object.defineProperty // 定义属性
+
+
+        // 一直使用方式
+        var obj = {};
+        obj.name = 'zs'; // 定义属性
+        obj['age'] = 18  // 定义属性
+
+
+        var temp = 11;
+
+        // 给obj定义num  数据劫持
+        Object.defineProperty(obj, 'num', {
+            get() { // 访问值的时候调用
+                console.log('get')
+                return temp
+            },
+            set(val) { // 设置值的时候调用
+                document.getElementById('box').innerHTML = val
+                temp = val
+            }
+        } )
+
+        // obj.num = 99
+        // console.log(obj.num)
+
+        Object.defineProperty(obj, 'num2', {
+            value: '123',
+            writable: false, // 可不可更改
+            enumerable: false, // 可不可枚举
+            configurable: true,
+        } )
+
+        for(item in obj) {
+            console.log(item)
+        }
+
+
+        // console.log(obj)
+        // console.log(obj)
+
+        var num = 1;
+
+        Object.defineProperty(window, 'a', {
+            get() {
+                return num++
+            }
+        })
+
+        // 面试题
+        if(a===1 && a===2 && a===3) {
+            alert('牛鼻')
+        }else{
+            alert('真挫')
+        }
+
+
+    </script>
+
+</body>
+</html>

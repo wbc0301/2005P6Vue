@@ -111,6 +111,7 @@ export default {
 		};
 	},
 	mounted() {
+        console.log(this)
 		this.$axios({ url: '/list.json' }).then(res => {
 			this.list = res.data
 		})
