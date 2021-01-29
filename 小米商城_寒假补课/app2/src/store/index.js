@@ -11,6 +11,7 @@ export default new Vuex.Store({
     state: {
         user: {}, // 用户信息
         showLogin: false, // 控制登录弹窗显示
+        detailData: {}, // 详情页的数据
     },
     mutations: {
         changeUser(state, obj) { // 修改用户
@@ -18,6 +19,9 @@ export default new Vuex.Store({
         },
         changeShowLogin(state, val) {
             state.showLogin = val;
+        },
+        changeDetailData(state, obj) {
+            state.detailData = obj;
         },
     },
     plugins: [pre()]

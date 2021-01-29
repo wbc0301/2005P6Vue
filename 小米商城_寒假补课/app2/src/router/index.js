@@ -48,6 +48,14 @@ const routes = [
         },
         component: () => import('../views/cart.vue')
     },
+    {
+        path: '/detail',
+        name: 'detail',
+        meta: {
+            needLogin: true, //必须登录
+        },
+        component: () => import('../views/detail.vue')
+    },
 ]
 
 const router = new VueRouter({
