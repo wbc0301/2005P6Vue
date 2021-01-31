@@ -11,6 +11,7 @@ export default new Vuex.Store({
     state: {
         user: {}, // 用户信息
         showLogin: false, // 控制登录弹窗显示
+        showRegister: false, // 控制注册弹窗显示
         detailData: {}, // 详情页的数据
         cartList: [], // 购物车的数据
     },
@@ -20,6 +21,9 @@ export default new Vuex.Store({
         },
         changeShowLogin(state, val) {
             state.showLogin = val;
+        },
+        changeShowRegister(state, val) {
+            state.showRegister = val;
         },
         changeDetailData(state, obj) {
             state.detailData = obj;

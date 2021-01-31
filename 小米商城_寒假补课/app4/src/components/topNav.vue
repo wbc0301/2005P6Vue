@@ -4,6 +4,17 @@
 			<el-menu-item index="/cart">购物车({{$store.getters.allNum}})</el-menu-item>
 			<el-menu-item index="/collect">我的收藏</el-menu-item>
 			<el-menu-item index="/order">我的订单</el-menu-item>
+			<el-menu-item>
+				<el-popconfirm v-if="user.userName" title="您确定退出吗？" @confirm="logout">
+					<div slot="reference">您好：{{user.userName}}</div>
+				</el-popconfirm>
+
+				<div v-else>
+					<span @click="login">登录</span>
+					|
+					<span @click="register">注册</span>
+				</div>
+			</el-menu-item>
 		</el-menu>
 
 		<el-menu router :default-active="activeIndex" mode="horizontal">
@@ -15,14 +26,38 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
 	data() {
 		return {
 			activeIndex: '/home'
 		};
 	},
+	computed: {
+		...mapState(['user']), // 映射state
+
+	},
 	mounted() { },
-	methods: {},
+	methods: {
+
+        ...mapMutations(['changeUser', 'changeShowRegister']), // 映射mutation
+        
+		// changeUser(state, obj) { // 修改用户
+		// 	state.user = obj;
+        // },
+        
+		login() { // 登录
+			this.$store.commit('changeShowLogin', true)
+		},
+		logout() { // 退出
+            // this.$store.commit('changeUser', {});
+            this.changeUser({});
+            this.$router.push('/home')
+		},
+        register() { // 注册
+            this.changeShowRegister(true) // 打开注册弹窗
+		},
+	},
 };
 </script>
 

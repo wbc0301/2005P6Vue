@@ -15,7 +15,7 @@
 			<el-table-column prop="price" label="单价" align="center"></el-table-column>
 			<el-table-column label="数量" align="center">
 				<template slot-scope="scope">
-					<el-input-number v-model="scope.row.num" @change="handleChange" :min="1" :max="10"></el-input-number>
+					<el-input-number v-model="scope.row.num" @change="handleChange(scope.row)" :min="1" :max="10"></el-input-number>
 				</template>
 			</el-table-column>
 			<el-table-column label="小计" align="center">
@@ -23,7 +23,9 @@
 			</el-table-column>
 			<el-table-column label="操作" width="120" align="center">
 				<template slot-scope="scope">
-					<i class="el-icon-error"></i>
+					<el-popconfirm title="您确定删除吗？" @confirm="del(scope.row.productID)">
+						<i slot="reference" class="el-icon-error"></i>
+					</el-popconfirm>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -77,6 +79,46 @@ export default {
 				if (res.data.code == '001') {
 					// 保存到vuex中
 					this.$store.commit('changeCartList', res.data.shoppingCartData)
+				} else {
+					this.$message({ message: res.data.msg, type: 'error' });
+				}
+			})
+		},
+
+		// 用户改变商品数量
+		handleChange(obj) {
+			this.$axios({
+				url: '/user/shoppingCart/updateShoppingCart',
+				method: 'post',
+				data: { user_id: this.user.user_id, "product_id": obj.productID, "num": obj.num }
+			}).then(res => {
+				if (res.data.code == '001') { // 数量修改成功
+					this.$message({ message: res.data.msg, type: 'success' });
+
+					// 成功后 重新请求数据，渲染页面
+					this.getCartList();
+
+
+				} else {
+					this.$message({ message: res.data.msg, type: 'error' });
+				}
+			})
+		},
+
+		// 删除
+		del(id) {
+			this.$axios({
+				url: '/user/shoppingCart/deleteShoppingCart',
+				method: 'post',
+				data: { user_id: this.user.user_id, "product_id": id}
+			}).then(res => {
+				if (res.data.code == '001') { // 数量修改成功
+					this.$message({ message: res.data.msg, type: 'success' });
+
+					// 成功后 重新请求数据，渲染页面
+					this.getCartList();
+
+
 				} else {
 					this.$message({ message: res.data.msg, type: 'error' });
 				}
